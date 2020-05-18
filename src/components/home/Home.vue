@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <PageTitle icon="fa fa-home" main="Dashboard" sub="Base de Conhecimento" />
+        <PageTitle icon="fa fa-home" main="Home" sub="Base de Conhecimento" />
     </div>
 </template>
 
