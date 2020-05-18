@@ -10,7 +10,7 @@
                     <b-tab title="Categorias">
                         <CategoryAdmin />
                     </b-tab>
-                    <b-tab title="Artigos">
+                    <b-tab title="Usuários">
                         <UserAdmin />
                     </b-tab>
                 </b-tabs>
