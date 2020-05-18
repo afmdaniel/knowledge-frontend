@@ -6,7 +6,7 @@
 
 <script>
 const CategoryComponent = {
-    name: "Category Component"
+    name: "CategoryComponent"
 }
 
 export default CategoryComponent
