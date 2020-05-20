@@ -13,7 +13,7 @@
                 <b-form-select v-if="mode !== 'remove'" id="category-parentId"
                     v-model="category.parentId" :options="categories">
                     <template slot="first">
-                        <b-form-select-option :value="null" disabled>
+                        <b-form-select-option :value="null">
                             -- Selecione a Categoria Pai --
                         </b-form-select-option>
                     </template>
