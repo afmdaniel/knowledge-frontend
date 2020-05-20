@@ -80,7 +80,7 @@ const UserAdmin = {
     data: function() {
         return {
             mode: "save",
-            isBusy: true,
+            isBusy: false,
             user: {},
             users: [],
             fields: [
