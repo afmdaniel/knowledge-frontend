@@ -5,7 +5,7 @@
             <b-row>
                 <b-col md="6" sm="12">
                     <b-form-group label="Nome" label-for="user-name">
-                        <b-form-input :plaintext="mode === 'remove' ? true : false"
+                        <b-form-input :readonly="mode === 'remove' ? true : false"
                             id="user-name" type="text"
                             v-model="user.name" required
                             placeholder="Informe o nome do usuário">
@@ -14,7 +14,7 @@
                 </b-col>
                 <b-col md="6" sm="12">
                     <b-form-group label="E-mail" label-for="user-email">
-                        <b-form-input :plaintext="mode === 'remove' ? true : false"
+                        <b-form-input :readonly="mode === 'remove' ? true : false"
                             id="user-email" type="text"
                             v-model="user.email" required
                             placeholder="Informe o e-mail do usuário">
@@ -52,7 +52,22 @@
             <b-button class="ml-2" @click="reset">Cancelar</b-button>
         </b-form>
         <hr>
-        <b-table responsive striped primary-key="id" :items="users" :fields="fields"></b-table>
+        <b-table :busy="isBusy" responsive striped primary-key="id" :items="users" :fields="fields">
+            <template slot="table-busy">
+                <div class="text-center text-danger my-2">
+                    <b-spinner class="align-middle"></b-spinner>
+                    <strong>Loading...</strong>
+                </div>
+            </template>
+            <template slot="cell(actions)" slot-scope="data">
+                <b-button variant="warning" @click="loadUser(data.item)" class="mr-2">
+                    <i class="fa fa-pencil"></i>
+                </b-button>
+                <b-button variant="danger" @click="loadUser(data.item, 'remove')" class="mr-2">
+                    <i class="fa fa-trash"></i>
+                </b-button>
+            </template>
+        </b-table>
     </div>
 </template>
 
@@ -65,6 +80,7 @@ const UserAdmin = {
     data: function() {
         return {
             mode: "save",
+            isBusy: true,
             user: {},
             users: [],
             fields: [
@@ -83,7 +99,9 @@ const UserAdmin = {
     },
     methods: {
         async loadUsers() {
+            this.toggleBusy()
             const res = await api.get("/users")
+            this.toggleBusy()
             this.users = res.data
         },
         reset() {
@@ -112,6 +130,13 @@ const UserAdmin = {
                 showError(err)
             }
             
+        },
+        loadUser(user, mode = 'save') {
+            this.mode = mode
+            this.user = { ...user }
+        },
+        toggleBusy() {
+            this.isBusy = !this.isBusy
         }
     },
     mounted() {
