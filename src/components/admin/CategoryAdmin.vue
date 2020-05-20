@@ -2,30 +2,25 @@
     <div class="category-admin">
         <b-form>
             <input type="hidden" id="category-id" v-model="category.id" />
-            <b-row>
-                <b-col>
-                    <b-form-group label="Nome" label-for="category-name">
-                        <b-form-input :readonly="mode === 'remove' ? true : false"
-                            id="category-name" type="text"
-                            v-model="category.name" required
-                            placeholder="Informe o nome da categoria">
-                        </b-form-input>
-                    </b-form-group>
-                </b-col>
-            </b-row>
-            <b-row v-if="mode !== 'remove'">
-                <b-col>
-                    <b-form-group label="Categoria Pai" label-for="category-parentId">
-                        <b-form-select id="category-parentId" v-model="category.parentId" :options="categories">
-                            <template slot="first">
-                                <b-form-select-option :value="null" disabled>
-                                    -- Selecione a Categoria Pai --
-                                </b-form-select-option>
-                            </template>
-                        </b-form-select>
-                    </b-form-group>
-                </b-col>
-            </b-row>
+            <b-form-group label="Nome" label-for="category-name">
+                <b-form-input :readonly="mode === 'remove' ? true : false"
+                    id="category-name" type="text"
+                    v-model="category.name" required
+                    placeholder="Informe o nome da categoria">
+                </b-form-input>
+            </b-form-group>
+            <b-form-group label="Categoria Pai" label-for="category-parentId">
+                <b-form-select v-if="mode !== 'remove'" id="category-parentId"
+                    v-model="category.parentId" :options="categories">
+                    <template slot="first">
+                        <b-form-select-option :value="null" disabled>
+                            -- Selecione a Categoria Pai --
+                        </b-form-select-option>
+                    </template>
+                </b-form-select>
+                <b-form-input v-else id="category-parentId" 
+                    v-model="category.path" readonly />
+            </b-form-group>
             <b-button variant="primary" v-if="mode === 'save'"
                 @click="save">Salvar</b-button>
             <b-button variant="danger" v-if="mode === 'remove'"
