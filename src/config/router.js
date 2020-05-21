@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '@/components/home/Home'
 import AdminPages from '@/components/admin/AdminPages'
 import ArticlesByCategory from '@/components/articles/ArticlesByCategory'
+import ArticleById from '@/components/articles/ArticleById'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,10 @@ const routes = [{
     name: 'articlesByCategory',
     path: '/categories/:id/articles',
     component: ArticlesByCategory
+},{
+    name: 'articlesById',
+    path: '/articles/:id',
+    component: ArticleById
 }]
 
 const router = new VueRouter({
