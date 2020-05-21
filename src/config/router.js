@@ -21,7 +21,7 @@ const routes = [{
     path: '/categories/:id/articles',
     component: ArticlesByCategory
 },{
-    name: 'articlesById',
+    name: 'articleById',
     path: '/articles/:id',
     component: ArticleById
 }]
