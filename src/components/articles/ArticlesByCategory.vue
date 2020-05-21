@@ -3,7 +3,7 @@
         <PageTitle icon="fa fa-folder-o" :main="category.name" sub="Categoria" />
         <ul>
             <li v-for="article in articles" :key="article.id">
-                {{ article.name }}
+                <ArticleItem :article="article" />
             </li>
         </ul>
         <div class="load-more">
@@ -17,11 +17,13 @@
 <script>
 import api from '@/services/api'
 import PageTitle from '../template/PageTitle'
+import ArticleItem from './ArticleItem'
 
 const ArticlesByCategory = {
     name: "ArticlesByCategory",
     components: {
-        PageTitle
+        PageTitle,
+        ArticleItem
     },
     data: function () {
         return {
