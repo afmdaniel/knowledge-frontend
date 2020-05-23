@@ -6,17 +6,21 @@
 			:hideUserDropdown="!user"
 		/>
 		<Menu v-if="user"/>
-		<Content />
+		<Loading v-if="validatingToken" />
+		<Content v-else />
 		<Footer />
 	</div>
 </template>
 
 <script>
+import api from './services/api'
+import userKey from './config/localStorage'
 import { mapState } from 'vuex'
 import Header from '@/components/template/Header'
 import Menu from '@/components/template/Menu'
 import Content from '@/components/template/Content'
 import Footer from '@/components/template/Footer'
+import Loading from '@/components/template/Loading'
 
 export default {
 	name: "App",
@@ -24,9 +28,43 @@ export default {
 		Header,
 		Menu,
 		Content,
+		Loading,
 		Footer
 	},
-	computed: mapState(['isMenuVisible', 'user'])
+	data: function() {
+		return {
+			validatingToken: true
+		}
+	},
+	computed: mapState(['isMenuVisible', 'user']),
+	methods: {
+		async validateToken() {
+			this.validatingToken = true
+
+			const json = localStorage.getItem(userKey)
+			const userData = JSON.parse(json)
+			this.$store.commit('setUser', null)
+
+			if (!userData) {
+				this.validatingToken = false
+				return this.$router.push({ name: 'auth' })
+			}
+
+			const res = await api.post('/validateToken', userData)
+
+			if (res.data) {
+				this.$store.commit('setUser', userData)
+			} else {
+				localStorage.removeItem(userKey)
+				this.$router.push({ name: 'auth' })
+			}
+
+			this.validatingToken = false
+		}
+	},
+	created() {
+		this.validateToken()
+	}
 }
 </script>
 
