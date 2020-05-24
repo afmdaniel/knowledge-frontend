@@ -1,4 +1,17 @@
-# frontend
+# Knowledge - Front End
+
+Article registration system. Articles are created by users with administrator permission. They can also register, delete and edit articles, categories and users.<br>
+
+The back end of this project can be found at [Knowledge - Back End](https://github.com/afmdaniel/knowledge-backend)
+
+![screenshot](./public/screenshot.PNG)
+
+## Technologies
+
+- Vue
+- Vuex
+- Bootstrap
+- Axios
 
 ## Project setup
 ```
