@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import 'highlightjs/styles/dracula.css'
+import hljs from 'highlightjs/highlight.pack'
 import api from '@/services/api'
 import PageTitle from '../template/PageTitle'
 
@@ -22,6 +24,11 @@ const ArticleById = {
     async mounted() {
         const res = await api.get(`/articles/${this.$route.params.id}`)
         this.article = res.data
+    },
+    updated() {
+        document.querySelectorAll('.article-content pre').forEach(e => {
+            hljs.highlightBlock(e)
+        })
     }
 }
 
