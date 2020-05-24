@@ -13,7 +13,7 @@ Article registration system. Articles are created by users with administrator pe
 
 ## Getting Started
 
-Make sure you are running [Knowledge - Back End](https://github.com/afmdaniel/knowledge-backend) at localhost
+Make sure you are running [Knowledge - Back End](https://github.com/afmdaniel/knowledge-backend) at http://localhost:3000
 
 ## Install dependecies
 ```
