@@ -2,8 +2,6 @@
 
 Article registration system. Articles are created by users with administrator permission. They can also register, delete and edit articles, categories and users.<br>
 
-The back end of this project can be found at [Knowledge - Back End](https://github.com/afmdaniel/knowledge-backend)
-
 ![screenshot](./public/screenshot.PNG)
 
 ## Technologies
@@ -13,7 +11,11 @@ The back end of this project can be found at [Knowledge - Back End](https://gith
 - Bootstrap
 - Axios
 
-## Project setup
+## Getting Started
+
+Make sure you are running [Knowledge - Back End](https://github.com/afmdaniel/knowledge-backend) at localhost
+
+## Install dependecies
 ```
 npm install
 ```
